@@ -1,0 +1,27 @@
+SELECT *
+FROM raw
+LIMIT 10;
+
+
+SELECT 
+    region, 
+    COUNT(product_id) AS high_value_count, 
+    SUM(sales_amount) AS regional_total
+FROM raw
+WHERE sales_amount > 4000
+GROUP BY region
+HAVING COUNT(product_id) >= 1
+ORDER BY regional_total DESC;
+
+
+
+SELECT 
+    sales_rep, 
+    SUM(sales_amount) AS total_revenue, 
+    AVG(quantity_sold) AS avg_items_per_sale,
+    COUNT(*) AS total_transactions
+FROM raw
+GROUP BY sales_rep
+ORDER BY total_revenue DESC;
+
+
