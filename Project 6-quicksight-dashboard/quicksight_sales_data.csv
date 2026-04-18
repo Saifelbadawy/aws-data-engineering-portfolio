@@ -1,0 +1,11 @@
+order_date,region,product_category,sales_amount,units_sold
+2026-04-01,North,Electronics,1200,3
+2026-04-01,South,Furniture,800,2
+2026-04-02,East,Clothing,450,5
+2026-04-02,West,Electronics,1500,4
+2026-04-03,North,Furniture,900,2
+2026-04-03,South,Clothing,300,3
+2026-04-04,East,Electronics,2000,5
+2026-04-04,West,Furniture,700,1
+2026-04-05,North,Clothing,350,4
+2026-04-05,South,Electronics,1800,4
