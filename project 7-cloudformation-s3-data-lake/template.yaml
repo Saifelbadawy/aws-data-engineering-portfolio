@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Small CloudFormation project to create a reusable S3 data lake foundation
+
+Parameters:
+  ProjectName:
+    Type: String
+    Default: saif-datalake
+    Description: Prefix used for bucket names
+
+Resources:
+  RawBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${ProjectName}-raw-${AWS::AccountId}-${AWS::Region}'
+      VersioningConfiguration:
+        Status: Enabled
+      LifecycleConfiguration:
+        Rules:
+          - Id: DeleteOldRawObjects
+            Status: Enabled
+            ExpirationInDays: 30
+
+  ProcessedBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${ProjectName}-processed-${AWS::AccountId}-${AWS::Region}'
+      VersioningConfiguration:
+        Status: Enabled
+
+Outputs:
+  RawBucketName:
+    Description: Name of the raw data bucket
+    Value: !Ref RawBucket
+
+  ProcessedBucketName:
+    Description: Name of the processed data bucket
+    Value: !Ref ProcessedBucket
